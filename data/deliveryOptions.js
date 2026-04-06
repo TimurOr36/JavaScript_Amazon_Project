@@ -19,7 +19,7 @@ export function getDeliveryOption(deliveryOptionId) {
       deliveryOption = option;
     }
   });
-  return deliveryOption;
+  return deliveryOption || deliveryOptions[0];
 }
 
 function isWeekend(date) {
@@ -43,4 +43,15 @@ export function calculateDeliveryDate(deliveryOption) {
     'dddd, MMMM D'
   );
   return dateString;
+}
+
+export function validDeliveryOption(deliveryOptionId) {
+  let found = false;
+
+  deliveryOptions.forEach((option) => {
+    if (option.id === deliveryOptionId) {
+      found = true;
+    }
+  });
+  return found;
 }
